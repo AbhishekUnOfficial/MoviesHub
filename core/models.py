@@ -1,7 +1,8 @@
 from django.db import models
+from autoslug import AutoSlugField
 
 
 class Movie(models.Model):
     title = models.CharField(max_length=100)
     poster = models.ImageField(upload_to="poster")
-    slug = models.SlugField(unique=True)
+    slug = AutoSlugField(populate_from="title")
