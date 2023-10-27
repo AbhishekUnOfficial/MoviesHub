@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "MovieHub/",
+      "src": "MovieHub/wsgi.py",
       "use": "@vercel/python"
     }
   ],
