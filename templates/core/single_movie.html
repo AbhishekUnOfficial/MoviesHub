@@ -1,0 +1,21 @@
+{% extends "core/base.html" %}
+
+
+{% block content %}
+<div class="m-3">
+  <h2 class="text-white text-3xl">MoviesHub</h2>
+  <div class="bg-white p-2 pb-0 mt-3 rounded-t-lg">
+    <p>Name: {{movie.title}}</p>
+    <p>Released year: {{movie.released}}</p>
+    <p>Posted on: {{movie.posted}}</p>
+    <p>Description: {{movie.description}}</p>
+  </div>
+  <div class="bg-white p-2 mb-3 rounded-b-lg">
+    <video class="rounded-md" width="1920" height="1080" controls>
+      {% for link in movie.links.all %}
+        <source src="{{ link.url }}" type="video/mp4">
+      {% endfor %}
+    </video>
+  </div>
+</div>
+{% endblock %}
