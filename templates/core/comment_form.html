@@ -1,5 +1,0 @@
-<form action="{% url 'single-movie' movie.id %}" method="post">
-  {% csrf_token %}
-  {{ comments.as_p }}
-  <button class="text-center bg-blue-600 rounded-md text-white py-2 px-4" type="button">Submit</button>
-</form>

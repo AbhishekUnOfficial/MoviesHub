@@ -19,6 +19,9 @@ class Language(models.Model):
 class Quality(models.Model):
     name = models.CharField(max_length=10, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "qualities"
+
     def __str__(self):
         return self.name
 
@@ -36,6 +39,9 @@ class Link(models.Model):
 class Comment(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     feedback = models.TextField(max_length=200, blank=True, null=True)
+
+    def __str__(self):
+        return self.feedback
 
 
 class Movie(models.Model):

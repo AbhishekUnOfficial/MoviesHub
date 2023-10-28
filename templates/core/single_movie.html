@@ -1,21 +1,27 @@
 {% extends "core/base.html" %}
-
-
 {% block content %}
-<div class="m-3">
-  <h2 class="text-white text-3xl">MoviesHub</h2>
-  <div class="bg-white p-2 my-3 rounded-lg">
-    <p>Name: {{movie.title}}</p>
-    <p>Released year: {{movie.released}}</p>
-    <p>Published: {{movie.published}}</p>
-    <p>Description: {{movie.description}}</p>
-  </div>
-  <!-- video part -->
-  <div class="bg-white my-3 rounded-lg">
-  </div>
- <!-- comment part -->
-  <div>
-    {% include "core/comment_form.html" %}
-  </div>
-</div>
+    <div class="m-3">
+        <h2 class="text-white text-3xl">MoviesHub</h2>
+        <div class="bg-white p-2 my-3 rounded-lg">
+            <p>Name: {{ movie.title }}</p>
+            <p>Released year: {{ movie.released }}</p>
+            <p>Published: {{ movie.published }}</p>
+            <p>Description: {{ movie.description }}</p>
+        </div>
+        <!-- video part -->
+        <div class="bg-white my-3 rounded-lg">{% include "core/video_player.html" %}</div>
+        <!-- comment part -->
+        <div>
+            <p>All comments</p>
+            <p>{{ movie.comments }}</p>
+        </div>
+        <div class="border-2 border-red-400">
+            <form action="{% url 'single-movie' movie.id %}" method="post">
+                {% csrf_token %}
+                {{ movie.comments.as_p }}
+                <button class="text-center bg-blue-600 rounded-md text-white py-2 px-4"
+                        type="button">Submit</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

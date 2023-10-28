@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, detail
-
-from core.forms import CommentForm, MovieForm
+from django.views.generic import CreateView, DetailView, ListView
+from django.db.models import Q
+from core.forms import CommentForm
 from .models import Comment, Movie
 
 
@@ -21,14 +21,6 @@ class SingleMovieView(DetailView):
     slug_url_kwarg = "slug"
 
 
-class MovieFormView(CreateView):
-    model = Movie
-    form_class = MovieForm
-    context_object_name = "form"
-    template_name = "core/movie_form.html"
-    success_url = reverse_lazy("all-movies")
-
-
 class CommentFormView(CreateView):
     model = Comment
     form_class = CommentForm
@@ -41,3 +33,11 @@ class CommentView(DetailView):
     model = Comment
     template_name = "core/comment_view.html"
     context_object_name = "comments"
+
+
+def SearchPost(request):
+    if request.method == "POST":
+        search = request.POST["search"]
+        return render(request, "core/search_page.html", {"search": search})
+    else:
+        return render(request, "core/search_page.html", {})

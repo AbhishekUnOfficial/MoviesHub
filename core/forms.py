@@ -14,6 +14,6 @@ class MovieForm(ModelForm):
         fields = "__all__"
         widgets = {
             "name": Textarea(
-                attrs={"cols": 80, "rows": 20},
+                attrs={"cols": 80, "rows": 20, "class": "p-2 bg-black"},
             ),
         }
