@@ -33,6 +33,11 @@ class Link(models.Model):
         return self.name
 
 
+class Comment(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+    feedback = models.TextField(max_length=200, blank=True, null=True)
+
+
 class Movie(models.Model):
     title = models.CharField(max_length=100)
     poster = models.ImageField(upload_to="poster")
@@ -47,6 +52,13 @@ class Movie(models.Model):
         Quality, on_delete=models.CASCADE, blank=True, null=True
     )
     links = models.ManyToManyField(Link)
+    comments = models.ForeignKey(
+        Comment,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        related_name="comments",
+    )
 
     def __str__(self):
         return self.title

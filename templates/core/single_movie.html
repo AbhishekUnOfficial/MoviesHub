@@ -4,18 +4,18 @@
 {% block content %}
 <div class="m-3">
   <h2 class="text-white text-3xl">MoviesHub</h2>
-  <div class="bg-white p-2 pb-0 mt-3 rounded-t-lg">
+  <div class="bg-white p-2 my-3 rounded-lg">
     <p>Name: {{movie.title}}</p>
     <p>Released year: {{movie.released}}</p>
-    <p>Posted on: {{movie.posted}}</p>
+    <p>Published: {{movie.published}}</p>
     <p>Description: {{movie.description}}</p>
   </div>
-  <div class="bg-white p-2 mb-3 rounded-b-lg">
-    <video class="rounded-md" width="1920" height="1080" controls>
-      {% for link in movie.links.all %}
-        <source src="{{ link.url }}" type="video/mp4">
-      {% endfor %}
-    </video>
+  <!-- video part -->
+  <div class="bg-white my-3 rounded-lg">
+  </div>
+ <!-- comment part -->
+  <div>
+    {% include "core/comment_form.html" %}
   </div>
 </div>
 {% endblock %}

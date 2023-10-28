@@ -1,0 +1,5 @@
+<video class="rounded-md" width="1920" height="1080" controls>
+  {% for link in movie.links.all %}
+  <source src="{{ link.url }}" type="video/mp4">
+  {% endfor %}
+</video>
