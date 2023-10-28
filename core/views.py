@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, detail
 
-from core.forms import CommentForm
+from core.forms import CommentForm, MovieForm
 from .models import Comment, Movie
 
 
@@ -21,11 +21,19 @@ class SingleMovieView(DetailView):
     slug_url_kwarg = "slug"
 
 
+class MovieFormView(CreateView):
+    model = Movie
+    form_class = MovieForm
+    context_object_name = "form"
+    template_name = "core/movie_form.html"
+    success_url = reverse_lazy("all-movies")
+
+
 class CommentFormView(CreateView):
     model = Comment
     form_class = CommentForm
     template_name = "core/comment_form.html"
-    success_url = reverse_lazy("detail-view")
+    success_url = reverse_lazy("all-movies")
     context_object_name = "comments"
 
 

@@ -1,0 +1,10 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<form action="{% url 'movie-form' %}" method="post">
+    <div class="p-2 rounded-lg text-yellow-100">
+    {{ form.as_p }}
+    </div>
+    <button class="bg-blue-400 rounded-lg py-1 px-2 text-white font-bold" type="button">Submit</button>
+</form>
+{% endblock %}
