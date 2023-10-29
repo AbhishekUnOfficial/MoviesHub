@@ -6,7 +6,12 @@
             <p>Name: {{ movie.title }}</p>
             <p>Released year: {{ movie.released }}</p>
             <p>Published: {{ movie.published }}</p>
-            <p>Description: {{ movie.description }}</p>
+            <!-- description part -->
+            {% if movie.description %}
+                <div>
+                    <p>Description: {{ movie.description|safe }}</p>
+                </div>
+            {% endif %}
         </div>
         <!-- video part -->
         <div class="bg-white my-3 rounded-lg">{% include "core/video_player.html" %}</div>

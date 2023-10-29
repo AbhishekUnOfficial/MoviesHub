@@ -1,0 +1,12 @@
+<div class="flex my-4 mx-4">
+  <h2 class="w-full py-2 rounded-md text-3xl text-white">MoviesHub</h2>
+</div>
+
+<form action="{% url 'search-movie' %}" method="post">
+  {% csrf_token %}
+  <div class="flex mb-4 mx-5 rounded-md">
+    <input class="flex-auto rounded-l-md outline-none py-2 px-4" type="text" name="searched"
+      placeholder="Search Movies...">
+    <button class="flex-none bg-blue-500 rounded-r-md py-2 px-4 text-white" type="submit">Search</button>
+  </div>
+</form>

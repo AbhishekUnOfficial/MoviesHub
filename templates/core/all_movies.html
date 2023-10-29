@@ -1,19 +1,9 @@
 {% extends "core/base.html" %}
 {% block content %}
-    <div class="container text-center">
-        <h2 class="text-white font-Nosifer text-start text-3xl mx-5 my-3">All Movies</h2>
-        <form class="flex w-auto mx-5 space-x-1"
-              action="{% url 'search-movie' %}"
-              method="post">
-            {% csrf_token %}
-            <input class="p-2 capitalize outline-none font-mono flex-auto rounded-md"
-                   type="text"
-                   name="searched"
-                   placeholder="Search movies">
-            <button class="bg-blue-600 rounded-md p-2 text-white" type="submit">Search</button>
-        </form>
+    <div class="text-center">
+        {% include "core/new_nav.html" %}
         {% for movie in movies %}
-            <div class="bg-white p-2 m-5 capitalize rounded-lg">
+            <div class="bg-white p-2 my-3 mx-5 capitalize rounded-lg">
                 <div class="">
                     <img class="rounded-lg object-cover h-48 w-full"
                          src="{{ movie.poster.url }}"

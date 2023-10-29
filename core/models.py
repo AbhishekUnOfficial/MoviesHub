@@ -1,5 +1,6 @@
 from django.db import models
 from autoslug import AutoSlugField
+from ckeditor.fields import RichTextField
 
 
 class Network(models.Model):
@@ -51,7 +52,9 @@ class Movie(models.Model):
     published = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated = models.DateTimeField(auto_now=True, blank=True, null=True)
     released = models.IntegerField(blank=True, null=True)
-    description = models.TextField(max_length=200, blank=True, null=True)
+    description = RichTextField(blank=True, null=True)
+    # description = models.FloatField(blank=True, null=True)
+    # description = models.TextField(max_length=200, blank=True, null=True)
     languages = models.ManyToManyField(Language)
     networks = models.ManyToManyField(Network)
     qualities = models.ForeignKey(
