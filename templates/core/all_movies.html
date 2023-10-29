@@ -1,6 +1,6 @@
 {% extends "core/base.html" %}
 {% block content %}
-    <div class="container">
+    <div class="container text-center">
         <h2 class="text-white font-Nosifer text-start text-3xl mx-5 my-3">All Movies</h2>
         <form class="flex w-auto mx-5 space-x-1"
               action="{% url 'search-movie' %}"
@@ -8,7 +8,7 @@
             {% csrf_token %}
             <input class="p-2 capitalize outline-none font-mono flex-auto rounded-md"
                    type="text"
-                   name="search"
+                   name="searched"
                    placeholder="Search movies">
             <button class="bg-blue-600 rounded-md p-2 text-white" type="submit">Search</button>
         </form>
@@ -28,7 +28,6 @@
                     <div>
                         {% for language in movie.languages.all %}<p>Language: {{ language.name }}</p>{% endfor %}
                     </div>
-                    <!-- video player part -->
                     <div>
                         {% for network in movie.networks.all %}<p>Network: {{ network.name }}</p>{% endfor %}
                     </div>

@@ -1,7 +1,33 @@
 {% extends 'core/base.html' %}
-<div>
-    <h1>You searched for...</h1>
-    {% for results in search %}
-    {{ search }}
-    {% endfor %}
-<div>
+{% block content %}
+    <div class="text-center my-3 mx-2">
+        <p class="text-white text-3xl">You searched for...</p>
+        <p class="text-white text-3xl">
+            {% for search in searched %}{{ search }}{% endfor %}
+        </p>
+        <hr class="border-2 border-solid mx-5 rounded-md my-5">
+        <p class="text-white text-3xl">search results:</p>
+        {% for movie in movies %}
+            <div class="bg-white p-2 m-5 capitalize rounded-lg">
+                <div class="">
+                    <img class="rounded-lg object-cover h-48 w-full"
+                         src="{{ movie.poster.url }}"
+                         alt="{{ movie.title }}">
+                </div>
+                <div class="bg-white p-2">
+                    <p>
+                        <a href="{% url 'single-movie' movie.slug %}">Name: {{ movie.title }}</a>
+                    </p>
+                    <p>Released year: {{ movie.released }}</p>
+                    <p>available quality: {{ movie.qualities }}</p>
+                    <div>
+                        {% for language in movie.languages.all %}<p>Language: {{ language.name }}</p>{% endfor %}
+                    </div>
+                    <div>
+                        {% for network in movie.networks.all %}<p>Network: {{ network.name }}</p>{% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

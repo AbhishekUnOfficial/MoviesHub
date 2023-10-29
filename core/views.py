@@ -37,7 +37,10 @@ class CommentView(DetailView):
 
 def SearchPost(request):
     if request.method == "POST":
-        search = request.POST["search"]
-        return render(request, "core/search_page.html", {"search": search})
+        searched = request.POST["searched"]
+        movies = Movie.objects.filter(title__contains=searched)
+        return render(
+            request, "core/search_page.html", {"searched": searched, "movies": movies}
+        )
     else:
         return render(request, "core/search_page.html", {})
