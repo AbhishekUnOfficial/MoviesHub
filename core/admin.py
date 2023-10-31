@@ -18,7 +18,7 @@ class LinkAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ["name"]
+    list_display = ["name", "created", "updated"]
     list_filter = ["name"]
     search_fields = ["name"]
 

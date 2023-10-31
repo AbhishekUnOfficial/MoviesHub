@@ -1,6 +1,7 @@
 from django.db import models
 from autoslug import AutoSlugField
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import User
 
 
 class Network(models.Model):
@@ -37,15 +38,8 @@ class Link(models.Model):
         return self.name
 
 
-class Comment(models.Model):
-    name = models.CharField(max_length=100, blank=True, null=True)
-    feedback = models.TextField(max_length=200, blank=True, null=True)
-
-    def __str__(self):
-        return self.feedback
-
-
 class Movie(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     title = models.CharField(max_length=100)
     poster = models.ImageField(upload_to="poster")
     slug = AutoSlugField(populate_from="title")
@@ -61,13 +55,19 @@ class Movie(models.Model):
         Quality, on_delete=models.CASCADE, blank=True, null=True
     )
     links = models.ManyToManyField(Link)
-    comments = models.ForeignKey(
-        Comment,
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True,
-        related_name="comments",
-    )
 
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(
+        Movie, related_name="comments", blank=True, null=True, on_delete=models.SET_NULL
+    )
+    name = models.CharField(max_length=100, blank=True, null=True)
+    feedback = models.TextField(max_length=200, blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    updated = models.DateTimeField(auto_now=True, blank=True, null=True)
+
+    def __str__(self):
+        return self.feedback

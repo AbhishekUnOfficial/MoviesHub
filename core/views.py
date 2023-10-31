@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView
 from django.db.models import Q
-from core.forms import CommentForm
 from .models import Comment, Movie
 
 
@@ -21,14 +20,6 @@ class SingleMovieView(DetailView):
     slug_url_kwarg = "slug"
 
 
-class CommentFormView(CreateView):
-    model = Comment
-    form_class = CommentForm
-    template_name = "core/comment_form.html"
-    success_url = reverse_lazy("all-movies")
-    context_object_name = "comments"
-
-
 class CommentView(DetailView):
     model = Comment
     template_name = "core/comment_view.html"
@@ -44,3 +35,16 @@ def SearchPost(request):
         )
     else:
         return render(request, "core/search_page.html", {})
+
+
+def LoginPage(request):
+    if request.method == "post":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        print(username, password)
+
+    return render(request, "core/login_page.html")
+
+
+def RegisterPage(request):
+    return render(request, "core/register_page.html")
