@@ -1,7 +1,13 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import AllMoviesView, SingleMovieView, SearchPost, LoginPage, RegisterPage
+from .views import (
+    AllMoviesView,
+    SingleMovieView,
+    SearchPost,
+    LoginPage,
+    RegisterPage,
+)
 
 urlpatterns = [
     path("", AllMoviesView.as_view(), name="all-movies"),

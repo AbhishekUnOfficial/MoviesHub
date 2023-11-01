@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView
-from django.db.models import Q
+
 from .models import Comment, Movie
+from .forms import CommentForm
 
 
 class AllMoviesView(ListView):

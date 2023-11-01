@@ -1,10 +1,10 @@
-<form action="{% url 'all-movies' %}" method="post">
+<form action="{% url 'single-movie' movie.slug %}" method="post">
   {% csrf_token %}
   <div class="border font-mono border-gray-400 mx-5 my-2 rounded-md">
     <h2 class="text-center py-2 capitalize">Write your feedback</h2>
-    <hr class="mx-4 border-gray-400">
+    <hr class="mx-4 flex text-center">
     <div class="text-center my-2 capitalize">
-      <div class="">
+      <div>
         <label class="my-2 mx-5" for="name">Your name</label><br>
         <input
           class="bg-transparent min-w-max mx-2 outline-none border border-gray-400 placeholder-gray-400 rounded-md py-2 px-5"
@@ -15,6 +15,7 @@
         <textarea
           class="bg-transparent outline-none border border-gray-400 placeholder-gray-400 rounded-md py-2 px-5"></textarea>
       </div>
+      <button class="border border-gray-400 py-2 px-4 mt-2 rounded-md" type="submit">Submit</button>
     </div>
   </div>
 </form>
