@@ -3,5 +3,9 @@
     {% include "core/new_nav.html" %}
     {% include "core/description.html" %}
     {% include "core/comments.html" %}
-    {% include "core/comment_form.html" %}
+    <div class="text-center pt-2">
+        <button class="py-2 px-4 rounded-md border border-gray-400" type="submit">
+            <a href="{% url 'comment-form' movie.slug %}">Add comments</a>
+        </button>
+    </div>
 {% endblock content %}

@@ -1,6 +1,7 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import HttpResponseRedirect, get_object_or_404, render, reverse
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, FormView, ListView
+from django.db.models import Q
 
 from .models import Comment, Movie
 from .forms import CommentForm
@@ -29,8 +30,13 @@ class CommentView(DetailView):
 
 def SearchPost(request):
     if request.method == "POST":
-        searched = request.POST["searched"]
-        movies = Movie.objects.filter(title__contains=searched)
+        searched = request.POST.get("searched", "")
+        if searched:
+            movies = Movie.objects.filter(
+                Q(title__icontains=searched) | Q(description__icontains=searched)
+            )
+        else:
+            movies = Movie.objects.none()
         return render(
             request, "core/search_page.html", {"searched": searched, "movies": movies}
         )
@@ -49,3 +55,27 @@ def LoginPage(request):
 
 def RegisterPage(request):
     return render(request, "core/register_page.html")
+
+
+# def comment_form(request, slug):
+#     movie = get_object_or_404(Movie, slug=slug)
+#     if request.method == "POST":
+#         commentform = CommentForm(request.POST)
+#         if commentform.is_valid():
+#             new_comment = commentform.save(commit=False)
+#             new_comment.post = movie
+#             new_comment.save()
+#         return HttpResponseRedirect(reverse("single-movie", args=[slug]))
+#     else:
+#         commentform = CommentForm()
+#     return render(
+#         request,
+#         "core/single_movie.html",
+#         {"commentform": commentform, "movie": movie},
+#     )
+
+
+class AddCommentView(FormView):
+    template_name = "core/add_comments.html"
+    form_class = CommentForm
+    success_url = reverse_lazy("all-movies")

@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+{% block content %}
+    <div class="flex justify-center items-center h-screen">
+        <div class="bg-transparent p-6 rounded-lg shadow-md max-w-md">
+            <h2 class="text-2xl font-bold mb-4">Add Comments</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-4">
+                    {{ form.label_tag }}
+                    {{ form }}
+                </div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                        type="submit">Add Comments</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
