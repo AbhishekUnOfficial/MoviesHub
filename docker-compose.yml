@@ -17,9 +17,6 @@ services:
     container_name: db-container
     volumes:
       - "./postgres:/var/lib/postgresql/data"
-    environment:
-      - POSTGRES_USER=avishek
-      - POSTGRES_PASSWORD=avishek@django#2850
-      - POSTGRES_DB=djangodb
     networks:
       - django_network
+    env_file: ./.env
