@@ -1,9 +1,25 @@
 version: "3.9"
 services:
   web:
-      build: .
-      ports:
-          - "8000:8000"
-      command: python manage.py runserver 0.0.0.0:8000
-      volumes:
-          - .:/code
+    build: ./app
+    container_name: django_movieshub
+    ports:
+      - "8000:8000"
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app/:usr/src/app
+    env_file: ./.env
+    networks:
+      - django_network
+
+  db:
+    image: postgres
+    container_name: db-container
+    volumes:
+      - "./postgres:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_USER=avishek
+      - POSTGRES_PASSWORD=avishek@django#2850
+      - POSTGRES_DB=djangodb
+    networks:
+      - django_network
