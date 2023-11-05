@@ -1,3 +1,4 @@
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,8 +11,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap"
               rel="stylesheet">
-        <script src="https://cdn.tailwindcss.com"></script>
-        {% block style %}{% endblock %}
+        {% tailwind_css %}
     </head>
     <body class="bg-gray-900 text-gray-400 border-gray-400">
         {% block content %}{% endblock %}
