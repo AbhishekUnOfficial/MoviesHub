@@ -54,7 +54,7 @@ MIDDLEWARE = [
     "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
-ROOT_URLCONF = "MovieHub.urls"
+ROOT_URLCONF = "MoviesHub.urls"
 
 TEMPLATES = [
     {
@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "MovieHub.wsgi.application"
+WSGI_APPLICATION = "MoviesHub.wsgi.application"
 
 
 # Database
