@@ -1,4 +1,0 @@
-[tool.pyright]
-reportUnknownParameterType = false
-reportUnknownMemberType = false
-reportUnknownArgumentType = false

@@ -67,6 +67,16 @@ def register_page(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Account created successfully")
-        else:
-            form = UserCreationForm()
-        return render(request, "core/register_page.html", {"form": form})
+    else:
+        form = UserCreationForm()
+    return render(request, "core/register_page.html", {"form": form})
+
+
+def comment_form(request):
+    if request.method == "POST":
+        # name = should be fetch automatically if user logged in
+        user_comment = request.POST.get("comment")
+        comment = Comment.objects.get("feedback")  # type: ignore
+        comment.save()
+    template_name = "core/movie_detail.html"
+    return render(request, template_name)
