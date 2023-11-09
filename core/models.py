@@ -47,8 +47,6 @@ class Movie(models.Model):
     updated = models.DateTimeField(auto_now=True, blank=True, null=True)
     released = models.IntegerField(blank=True, null=True)
     description = RichTextField(blank=True, null=True)
-    # description = models.FloatField(blank=True, null=True)
-    # description = models.TextField(max_length=200, blank=True, null=True)
     languages = models.ManyToManyField(Language)
     networks = models.ManyToManyField(Network)
     qualities = models.ForeignKey(

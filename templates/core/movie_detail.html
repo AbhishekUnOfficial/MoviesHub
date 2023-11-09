@@ -32,8 +32,23 @@
         {% endif %}
     </div>
     <!-- comment form -->
-    <div>
+    <div class="mx-5 my-2 p-2 border border-gray-400 font-mono capitalize rounded-md">
         <form method="post">
+            <label for="name">Your name:</label>
+            <input class="bg-transparent capitalize rounded-md p-2 my-2 block w-full outline-none focus:ring-gray-500 active:border-gray-500"
+                   type="text"
+                   name="name"
+                   placeholder="Your name please">
+            <label for="feedback">Your feedback:</label>
+            <input class="bg-transparent capitalize rounded-md p-2 my-2 block w-full outline-none focus:ring-gray-500 active:border-gray-500"
+                   type="text"
+                   name="feedback"
+                   placeholder="Your feedback">
+            <div class="text-center">
+                <input class="border text-center py-2 px-5 my-2 rounded-md border-gray-500"
+                       type="submit"
+                       value="Submit">
+            </div>
         </form>
     </div>
 {% endblock content %}
