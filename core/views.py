@@ -1,14 +1,10 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
-from django.views.generic import DetailView, FormView, ListView
+from django.views.generic import DetailView, ListView
 from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-
 from .models import Comment, Movie
-from .forms import CommentForm
 
 
 class AllMoviesView(ListView):
@@ -32,21 +28,21 @@ class CommentView(DetailView):
 
 
 def search_post(request):
-    # Change to GET for search functionality
-    searched = request.GET.get("searched", "")
-
-    movies = (
-        Movie.objects.filter(
-            Q(title__icontains=searched) | Q(description__icontains=searched)
+    if request.method == "POST":
+        searched = request.POST.get("searched", "")
+        movies = (
+            Movie.objects.filter(  # type: ignore
+                Q(title__icontains=searched) | Q(
+                    description__icontains=searched)
+            )
+            if searched
+            else Movie.objects.none()  # type: ignore
         )
-        if searched
-        else Movie.objects.none()
-    )
 
-    return render(
-        request, "core/search_page.html", {
-            "searched": searched, "movies": movies}
-    )
+        return render(
+            request, "core/search_page.html", {
+                "searched": searched, "movies": movies}
+        )
 
 
 def login_page(request):
@@ -62,12 +58,11 @@ def login_page(request):
             return redirect("all-movies")
         else:
             messages.error(request, "Login failed")
-
     return render(request, "core/login_page.html")
 
 
 def register_page(request):
-    if request.method == "post":
+    if request.method == "POST":
         form = UserCreationForm()
         if form.is_valid():
             form.save()
@@ -75,9 +70,3 @@ def register_page(request):
         else:
             form = UserCreationForm()
         return render(request, "core/register_page.html", {"form": form})
-
-
-class AddCommentView(FormView):
-    template_name = "core/add_comments.html"
-    form_class = CommentForm
-    success_url = reverse_lazy("all-movies")

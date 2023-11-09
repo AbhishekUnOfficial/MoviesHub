@@ -8,8 +8,5 @@ urlpatterns = [
     path("search/", views.search_post, name="search-movie"),
     path("login/", views.login_page, name="login-page"),
     path("register/", views.register_page, name="register-page"),
-    path(
-        "<slug:slug>/postcomment", views.AddCommentView.as_view(), name="comment-form"
-    ),
-    path("<slug:slug>", views.PostDetailView.as_view(), name="single-movie"),
+    path("<slug:slug>", views.PostDetailView.as_view(), name="movie-detail"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
