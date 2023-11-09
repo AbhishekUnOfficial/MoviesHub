@@ -15,7 +15,8 @@ class AllMoviesView(ListView):
 
 
 class PostDetailView(DetailView):
-    template_name = "core/single_movie.html"
+    model = Movie
+    template_name = "core/movie_detail.html"
     context_object_name = "movie"
     slug_field = "slug"
     slug_url_kwarg = "slug"
@@ -32,16 +33,14 @@ def search_post(request):
         searched = request.POST.get("searched", "")
         movies = (
             Movie.objects.filter(  # type: ignore
-                Q(title__icontains=searched) | Q(
-                    description__icontains=searched)
+                Q(title__icontains=searched) | Q(description__icontains=searched)
             )
             if searched
             else Movie.objects.none()  # type: ignore
         )
 
         return render(
-            request, "core/search_page.html", {
-                "searched": searched, "movies": movies}
+            request, "core/search_page.html", {"searched": searched, "movies": movies}
         )
 
 

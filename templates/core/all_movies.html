@@ -1,21 +1,19 @@
 {% extends "core/base.html" %}
 {% block content %}
-    <div class="">
-        <div class="text-start">{% include "core/new_nav.html" %}</div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mx-5">
-            {% for movie in movies %}
-                <div class="border border-gray-400 p-2 rounded-lg">
-                    <img oncontextmenu="return false;"
-                         class="h-48 w-48 object-cover mx-auto rounded-md"
-                         src="{{ movie.poster.url }}"
-                         alt="{{ movie.title }}">
-                    <div class="mt-4">
-                        <a href="{% url 'single-movie' movie.slug %}">
-                            <h2 class="text-lg font-mono text-center">{{ movie.title }}</h2>
-                        </a>
-                    </div>
+    <div class="text-start">{% include "core/navbar.html" %}</div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mx-5">
+        {% for movie in movies %}
+            <div class="border border-gray-400 p-2 rounded-lg">
+                <img oncontextmenu="return false;"
+                     class="h-48 w-48 object-cover mx-auto rounded-md"
+                     src="{{ movie.poster.url }}"
+                     alt="{{ movie.title }}">
+                <div class="mt-4">
+                    <a href="{% url 'movie-detail' movie.slug %}">
+                        <h2 class="text-lg font-mono text-center">{{ movie.title }}</h2>
+                    </a>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

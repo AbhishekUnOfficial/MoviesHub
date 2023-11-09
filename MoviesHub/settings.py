@@ -26,8 +26,6 @@ INSTALLED_APPS = [
     "tailwind",
     "theme",
     "django_browser_reload",
-    "admin_interface",
-    "colorfield",
     # default
     "django.contrib.admin",
     "django.contrib.auth",
