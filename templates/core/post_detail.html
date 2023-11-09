@@ -1,0 +1,34 @@
+{% extends "core/base.html" %}
+{% block content %}
+    {% include "core/navbar.html" %}
+    <!-- description -->
+    <div class="mx-5 font-mono my-2 border border-gray-400 capitalize rounded-md p-2">
+        <p>Name: {{ movie.title }}</p>
+        <p>Released: {{ movie.released }}</p>
+        <div>published by: {{ movie.user }}</div>
+        <p>published: {{ movie.published }}</p>
+        <p>updated: {{ movie.updated }}</p>
+        {% for language in movie.languages.all %}<p>languages: {{ language.name }}</p>{% endfor %}
+        {% for network in movie.networks.all %}<p>networks: {{ network.name }}</p>{% endfor %}
+        <p>qualities: {{ movie.qualities }}</p>
+    </div>
+    <!-- users' comments -->
+    <div class="mx-5 my-2 p-2 border border-gray-400 rounded-md capitalize font-mono">
+        {% if not movie.comments.all %}
+            <p class="font-mono">No comments yet...</p>
+        {% else %}
+            {% for comment in movie.comments.all %}
+                <span class="text-gray-300">{{ comment.name }}:</span> <span>{{ comment.feedback }}</span>
+                <br>
+                <span class="text-sm text-gray-500">
+                    {% if comment.created != comment.updated %}
+                        {{ comment.updated }} (updated)
+                    {% else %}
+                        {{ comment.created }} (created)
+                    {% endif %}
+                </span>
+                <br>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock content %}

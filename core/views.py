@@ -11,7 +11,6 @@ from .models import Comment, Movie
 from .forms import CommentForm
 
 
-@login_required
 class AllMoviesView(ListView):
     model = Movie
     template_name = "core/all_movies.html"
@@ -19,16 +18,13 @@ class AllMoviesView(ListView):
     ordering = ["-updated"]
 
 
-@login_required
-class SingleMovieView(DetailView):
-    model = Movie
+class PostDetailView(DetailView):
     template_name = "core/single_movie.html"
     context_object_name = "movie"
     slug_field = "slug"
     slug_url_kwarg = "slug"
 
 
-@login_required
 class CommentView(DetailView):
     model = Comment
     template_name = "core/comment_view.html"
@@ -57,6 +53,7 @@ def login_page(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
+        print(username, password)
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
@@ -69,7 +66,7 @@ def login_page(request):
     return render(request, "core/login_page.html")
 
 
-def RegisterPage(request):
+def register_page(request):
     if request.method == "post":
         form = UserCreationForm()
         if form.is_valid():
