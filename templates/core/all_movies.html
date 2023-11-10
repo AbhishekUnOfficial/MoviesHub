@@ -1,6 +1,6 @@
 {% extends "core/base.html" %}
 {% block content %}
-    <div class="text-start">{% include "core/navbar.html" %}</div>
+    {% include "core/navbar.html" %}
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mx-5">
         {% for movie in movies %}
             <div class="border border-gray-400 p-2 rounded-lg">

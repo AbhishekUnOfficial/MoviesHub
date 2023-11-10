@@ -1,6 +1,6 @@
 <div class="text-gray-400 font-mono placeholder-gray-400">
   <div class="flex my-4 mx-5">
-    <h2 class="w-full text-center py-2 rounded-md text-3xl">
+    <h2 class=" w-full text-center py-2 rounded-md text-3xl">
       <a href="{% url 'all-movies' %}">MoviesHub</a>
     </h2>
   </div>
@@ -8,8 +8,8 @@
   <form action="{% url 'search-movie' %}" method="post">
     {% csrf_token %}
     <div class="flex mb-4 mx-5 rounded-md">
-      <input class="flex-auto bg-transparent border border-r-0 rounded-l-md py-2 px-4" type="text" name="searched"
-        placeholder="Search Movies..." />
+      <input class="flex-auto focus:outline-none bg-transparent border border-r-0 rounded-l-md py-2 px-4" type="text"
+        name="searched" placeholder="Search Movies..." />
       <button class="flex-none border-gray-500 bg-transparent border rounded-r-md py-2 px-4" type="submit">
         Search
       </button>
