@@ -33,15 +33,14 @@ def search_post(request):
         searched = request.POST.get("searched", "")
         movies = (
             Movie.objects.filter(  # type: ignore
-                Q(title__icontains=searched) | Q(description__icontains=searched)
+                Q(title__icontains=searched) | Q(
+                    description__icontains=searched)
             )
             if searched
             else Movie.objects.none()  # type: ignore
         )
-
-        return render(
-            request, "core/search_page.html", {"searched": searched, "movies": movies}
-        )
+        context = {"searched": searched, "movies": movies}
+        return render(request, "core/search_page.html", context)
 
 
 def login_page(request):
@@ -74,7 +73,6 @@ def register_page(request):
 def comment_form(request):
     if request.method == "POST":
         # name = should be fetch automatically if user logged in
-        user_comment = request.POST.get("comment")
         comment = Comment.objects.get("feedback")  # type: ignore
         comment.save()
     template_name = "core/movie_detail.html"
