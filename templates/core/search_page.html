@@ -1,12 +1,12 @@
 {% extends 'core/base.html' %}
 {% block content %}
     {% include "core/navbar.html" %}
-    <div class="text-center font-mono border border-gray-400 rounded-md mx-5 my-2 p-2">
+    <div class="text-center font-mono border border-[#3A4D39] rounded-md mx-5 my-2 p-2">
         <h2>You searched for: {{ searched }}</h2>
     </div>
     <div class="grid pt-2 grid-cols-2 md:grid-cols-4 gap-4 mx-5">
         {% for movie in movies %}
-            <div class="border border-gray-400 p-2 rounded-lg">
+            <div class="border border-[#3A4D39] p-2 rounded-lg">
                 <img oncontextmenu="return false;"
                      class="h-48 w-48 object-cover mx-auto rounded-md"
                      src="{{ movie.poster.url }}"

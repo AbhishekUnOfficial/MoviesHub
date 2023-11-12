@@ -2,7 +2,7 @@
 {% block content %}
     {% include "core/navbar.html" %}
     <!-- description -->
-    <div class="mx-5 font-mono my-2 border capitalize rounded-md p-2">
+    <div class="mx-5 font-mono my-2 border border-[#3A4D39] capitalize rounded-md p-2">
         <p>Name: {{ movie.title }}</p>
         <p>Released: {{ movie.released }}</p>
         <div>published by: {{ movie.user }}</div>
@@ -13,7 +13,7 @@
         <p>qualities: {{ movie.qualities }}</p>
     </div>
     <!-- users' comments -->
-    <div class="mx-5 my-2 p-2 border rounded-md capitalize font-mono">
+    <div class="mx-5 my-2 p-2 border border-[#3A4D39] rounded-md capitalize font-mono">
         {% if not movie.comments.all %}
             <p class="font-mono">No comments yet...</p>
         {% else %}
@@ -32,20 +32,20 @@
         {% endif %}
     </div>
     <!-- comment form -->
-    <div class="mx-5 my-2 p-2 border font-mono capitalize rounded-md">
+    <div class="mx-5 my-2 p-2 border border-[#3A4D39] text-[#739072] font-mono capitalize rounded-md">
         <form method="post">
             <label for="name">Your name:</label>
-            <input class="bg-transparent capitalize rounded-md p-2 my-2 block w-full"
+            <input class="bg-transparent border-b border-[#3A4D39] text-[#739072] placeholder-[#739072] capitalize rounded-md p-2 my-2 block w-full"
                    type="text"
                    name="name"
                    placeholder="Your name please">
             <label for="feedback">Your feedback:</label>
-            <input class="bg-transparent capitalize rounded-md p-2 my-2 block w-full"
+            <input class="bg-transparent border-[#3A4D39] rounded-md text-[#739072] placeholder-[#739072] capitalize p-2 my-2 block w-full"
                    type="text"
                    name="feedback"
                    placeholder="Your feedback">
             <div class="text-center">
-                <input class="border text-center py-2 px-5 my-2 rounded-md"
+                <input class="border-none bg-[#4F6F52] text-white text-center py-2 px-5 my-2 rounded-md"
                        type="submit"
                        value="Submit">
             </div>
